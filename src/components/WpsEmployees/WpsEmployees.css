@@ -1,0 +1,58 @@
+input[type='checkbox'] {
+  transform: scale(1.5);
+}
+
+.paginationStyler {
+  border: 1px #98a48a solid;
+  height: 50px;
+  padding: 10px;
+}
+
+.paginationButtonStyler {
+  border: 1px #98a48a solid;
+  height: 30px;
+  width: 50px;
+  text-align: center;
+  
+}
+
+.paginationButtonStyler:hover {
+  cursor: pointer;
+  background-color: rgb(41, 43, 44);
+  color: white;
+  border-color: rgb(41, 43, 44);
+}
+
+.navigator,
+.pageItem {
+  line-height: 25px;
+}
+
+.pageItem {
+  border: 1px #98a48a solid;
+  height: 30px;
+  width: 50px;
+  display: inline-block;
+  text-align: center;
+}
+
+.ellipsisItem {
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+}
+
+.pageItem:hover {
+  cursor: pointer;
+  background-color: rgb(41, 43, 44);
+  color: white;
+  border-color: rgb(41, 43, 44);
+}
+
+@media  screen and (max-width: 700px) {
+  .actions-container {
+    flex-direction: column;
+  }
+}

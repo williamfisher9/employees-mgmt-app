@@ -1,0 +1,17 @@
+.widget-style {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  background-color: rgba(0, 128, 128, 0.5);
+  padding: 20px;
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  transition: 200ms;
+}
+
+.widget-style:hover {
+  box-shadow: 0 0 10px 5px black;
+  background-color: rgba(0, 128, 128, 0.7);
+}

@@ -1,0 +1,9 @@
+
+
+
+@media  screen and (max-width: 1050px) {
+    .pagination-actions-container {
+      flex-direction: column;
+      gap: 10px
+    }
+  }

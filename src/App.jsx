@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import MainContainer from "./components/MainContainer/MainContainer";
+import FormSelector from './components/FormSelector/FormSelector';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  return <Router>
+  <Routes>
+    <Route path='/salaries/' element={<FormSelector />}></Route>
+    <Route path='/salaries/home' element={<FormSelector />}></Route>
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Route path='/salaries/wps' element={<MainContainer urlLink={"/salaries/wps"} />}></Route>
+
+    <Route path='/salaries/wps/dashboard' element={<MainContainer urlLink={"/salaries/wps/dashboard"} />}></Route>
+
+    <Route path='/salaries/wps/employer' element={<MainContainer urlLink={"/salaries/wps/employer"} />}></Route>
+
+    <Route  path='/salaries/wps/employees' element={<MainContainer urlLink={"/salaries/wps/employees"} />}></Route>
+
+    <Route  path='/salaries/simplified' element={<MainContainer urlLink={"/salaries/simplified"} />}></Route>
+    
+    <Route  path='/salaries/simplified/dashboard' element={<MainContainer urlLink={"/salaries/simplified/dashboard"} />}></Route>
+
+    <Route  path='/salaries/simplified/employer' element={<MainContainer urlLink={"/salaries/simplified/employer"} />}></Route>
+
+    <Route  path='/salaries/simplified/employees' element={<MainContainer urlLink={"/salaries/simplified/employees"} />}></Route>
+
+    <Route  path='/salaries/ministries' element={<MainContainer urlLink={"/salaries/ministries"} />}></Route>
+
+    <Route  path='/salaries/ministries/dashboard' element={<MainContainer urlLink={"/salaries/ministries/dashboard"} />}></Route>
+
+    <Route  path='/salaries/ministries/employer' element={<MainContainer urlLink={"/salaries/ministries/employer"} />}></Route>
+    
+    <Route  path='/salaries/ministries/employees' element={<MainContainer urlLink={"/salaries/ministries/employees"} />}></Route>
+
+    <Route  path='/salaries/support' element={<MainContainer urlLink={"/salaries/support"} />}></Route>
+
+    <Route  path='/salaries/support/how' element={<MainContainer urlLink={"/salaries/support/how"} />}></Route>
+
+    <Route  path='/salaries/support/contact' element={<MainContainer urlLink={"/salaries/support/contact"} />}></Route>
+
+</Routes>
+</Router>
 }
 
-export default App
+export default App;
