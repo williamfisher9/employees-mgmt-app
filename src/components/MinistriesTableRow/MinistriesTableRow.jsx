@@ -261,7 +261,7 @@ class MinistriesTableRow extends Component {
                             }
                             disabled
                             value={
-                                this.numberWithCommas((parseFloat(employee.amount) - parseFloat(employee.deductions)).toFixed(3))
+                                this.numberWithCommas((parseFloat(employee.amount) - parseFloat(employee.deductions)).toFixed(2))
                             }
                             size="lg" />
                         {

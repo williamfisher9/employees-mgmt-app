@@ -9,13 +9,13 @@ const App = () => {
     <Route path='/salaries/' element={<FormSelector />}></Route>
     <Route path='/salaries/home' element={<FormSelector />}></Route>
 
-    <Route path='/salaries/wps' element={<MainContainer urlLink={"/salaries/wps"} />}></Route>
+    <Route path='/salaries/detailed' element={<MainContainer urlLink={"/salaries/detailed"} />}></Route>
 
-    <Route path='/salaries/wps/dashboard' element={<MainContainer urlLink={"/salaries/wps/dashboard"} />}></Route>
+    <Route path='/salaries/detailed/dashboard' element={<MainContainer urlLink={"/salaries/detailed/dashboard"} />}></Route>
 
-    <Route path='/salaries/wps/employer' element={<MainContainer urlLink={"/salaries/wps/employer"} />}></Route>
+    <Route path='/salaries/detailed/employer' element={<MainContainer urlLink={"/salaries/detailed/employer"} />}></Route>
 
-    <Route  path='/salaries/wps/employees' element={<MainContainer urlLink={"/salaries/wps/employees"} />}></Route>
+    <Route  path='/salaries/detailed/employees' element={<MainContainer urlLink={"/salaries/detailed/employees"} />}></Route>
 
     <Route  path='/salaries/simplified' element={<MainContainer urlLink={"/salaries/simplified"} />}></Route>
     
@@ -25,13 +25,13 @@ const App = () => {
 
     <Route  path='/salaries/simplified/employees' element={<MainContainer urlLink={"/salaries/simplified/employees"} />}></Route>
 
-    <Route  path='/salaries/ministries' element={<MainContainer urlLink={"/salaries/ministries"} />}></Route>
+    <Route  path='/salaries/deductions' element={<MainContainer urlLink={"/salaries/deductions"} />}></Route>
 
-    <Route  path='/salaries/ministries/dashboard' element={<MainContainer urlLink={"/salaries/ministries/dashboard"} />}></Route>
+    <Route  path='/salaries/deductions/dashboard' element={<MainContainer urlLink={"/salaries/deductions/dashboard"} />}></Route>
 
-    <Route  path='/salaries/ministries/employer' element={<MainContainer urlLink={"/salaries/ministries/employer"} />}></Route>
+    <Route  path='/salaries/deductions/employer' element={<MainContainer urlLink={"/salaries/deductions/employer"} />}></Route>
     
-    <Route  path='/salaries/ministries/employees' element={<MainContainer urlLink={"/salaries/ministries/employees"} />}></Route>
+    <Route  path='/salaries/deductions/employees' element={<MainContainer urlLink={"/salaries/deductions/employees"} />}></Route>
 
     <Route  path='/salaries/support' element={<MainContainer urlLink={"/salaries/support"} />}></Route>
 

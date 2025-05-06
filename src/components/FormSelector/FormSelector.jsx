@@ -23,7 +23,6 @@ const FormSelector = () => {
     axios
       .get(`${BACKEND_URL}/api/forms`)
       .then((res) => {
-        console.log(res.data);
         if (res.status === 200 && res.data !== "") {
           setData(res.data);
         }
@@ -48,7 +47,7 @@ const FormSelector = () => {
                     </div>
         
                     <div className="form-selector-bg d-flex justify-content-center align-items-start flex-wrap rounded p-4" style={{width: "100%"}}>
-                          {data.map((form) => <div className="form-type" onClick={() => navigate(form.link)} key={form.id}>
+                          {data.map((form) => <div className="d-flex justify-content-center align-items-center flex-column form-type" onClick={() => navigate(form.link)} key={form.id}>
                                 
                                 <div className="text-center mb-2">
 

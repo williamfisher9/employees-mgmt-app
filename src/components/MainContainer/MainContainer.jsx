@@ -44,17 +44,17 @@ const MainContainer = ({urlLink}) => {
                         </Navbar.Brand>
 
                         <span className='d-flex justify-content-center align-items-center'>
-                            {urlLink.includes('wps') && <>
+                            {urlLink.includes('detailed') && <>
                                 <span className="material-symbols-rounded form-icon-font-style">table</span>
-                                <span className="form-name-font-style">WPS FORM</span>
+                                <span className="form-name-font-style">DETAILED FORM</span>
                             </>}
                             {urlLink.includes('simplified') && <>
                                 <span className="material-symbols-rounded form-icon-font-style">draft</span>
                                 <span className="form-name-font-style">SIMPLIFIED FORM</span>
                             </>}
-                            {urlLink.includes('ministries') && <>
+                            {urlLink.includes('deductions') && <>
                                 <span className="material-symbols-rounded form-icon-font-style">domain</span>
-                                <span className="form-name-font-style">NON WPS / MINISTRIES FORM</span>
+                                <span className="form-name-font-style">DEDUCTIONS FORM</span>
                             </>}
                             
                             {urlLink.includes('support') && <>
@@ -86,17 +86,17 @@ const MainContainer = ({urlLink}) => {
 
 
                 <div className="main-container-style">
-                    {urlLink === '/salaries/wps/dashboard' && <Dashboard formType={"wps"} />}
-                    {urlLink === '/salaries/wps/employer' && <WpsEmployer />}
-                    {urlLink === '/salaries/wps/employees' && <WpsEmployees />}
+                    {urlLink === '/salaries/detailed/dashboard' && <Dashboard formType={"detailed"} />}
+                    {urlLink === '/salaries/detailed/employer' && <WpsEmployer />}
+                    {urlLink === '/salaries/detailed/employees' && <WpsEmployees />}
 
                     {urlLink === '/salaries/simplified/dashboard' && <Dashboard formType={"simplified"} />}
                     {urlLink === '/salaries/simplified/employer' && <SimplifiedEmployer />}
                     {urlLink === '/salaries/simplified/employees' && <SimplifiedEmployees />}
 
-                    {urlLink === '/salaries/ministries/dashboard' && <Dashboard formType={"ministries"} />}
-                    {urlLink === '/salaries/ministries/employer' && <MinistriesEmployer />}
-                    {urlLink === '/salaries/ministries/employees' && <MinistriesEmployees />}
+                    {urlLink === '/salaries/deductions/dashboard' && <Dashboard formType={"deductions"} />}
+                    {urlLink === '/salaries/deductions/employer' && <MinistriesEmployer />}
+                    {urlLink === '/salaries/deductions/employees' && <MinistriesEmployees />}
 
                     {urlLink === '/salaries/support' && <ContactUs />}
                     {urlLink === '/salaries/support/how' && <HowTo />}

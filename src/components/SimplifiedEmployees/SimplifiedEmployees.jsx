@@ -102,7 +102,7 @@ class SimplifiedEmployees extends Component {
                     res.data.forEach((element, index) => {
                         element.zRecordIndex = index;
                         element.zIsChecked = false;
-                        element.amount = parseFloat(element.amount).toFixed(3);
+                        element.amount = parseFloat(element.amount).toFixed(2);
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
                     });
@@ -149,7 +149,7 @@ class SimplifiedEmployees extends Component {
                     res.data.forEach((element, index) => {
                         element.zRecordIndex = index;
                         element.zIsChecked = false;
-                        element.amount = parseFloat(element.amount).toFixed(3);
+                        element.amount = parseFloat(element.amount).toFixed(2);
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
                     });
@@ -185,7 +185,7 @@ class SimplifiedEmployees extends Component {
                     res.data.forEach((element, index) => {
                         element.zRecordIndex = index;
                         element.zIsChecked = false;
-                        element.amount = parseFloat(element.amount).toFixed(3);
+                        element.amount = parseFloat(element.amount).toFixed(2);
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
                     });
@@ -229,7 +229,7 @@ class SimplifiedEmployees extends Component {
                     res.data.forEach((element, index) => {
                         element.zRecordIndex = index;
                         element.zIsChecked = false;
-                        element.amount = parseFloat(element.amount).toFixed(3);
+                        element.amount = parseFloat(element.amount).toFixed(2);
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
                     });
@@ -533,7 +533,7 @@ class SimplifiedEmployees extends Component {
             dataRows[recordIndexInDataRows].numberOfWorkingDays = 0;
         }
 
-        dataRows[recordIndexInDataRows].amount = parseFloat(dataRows[recordIndexInDataRows].amount).toFixed(3);
+        dataRows[recordIndexInDataRows].amount = parseFloat(dataRows[recordIndexInDataRows].amount).toFixed(2);
 
         let errors = this.validateItem(dataRows[recordIndexInDataRows], this.state.employerDetails);
 
@@ -543,7 +543,7 @@ class SimplifiedEmployees extends Component {
                     dataRows[recordIndexInDataRows].zRecordStatus = errors.length > 0 ? "INCOMPLETE" : "COMPLETE";
                     dataRows[recordIndexInDataRows].errors = errors;
                     dataRows[recordIndexInDataRows].id = res.data.id;
-                    dataRows[recordIndexInDataRows].amount = parseFloat(res.data.amount).toFixed(3);
+                    dataRows[recordIndexInDataRows].amount = parseFloat(res.data.amount).toFixed(2);
 
                     let recordIndexInData = -1;
                     for (let i in this.state.data) {
@@ -767,7 +767,7 @@ class SimplifiedEmployees extends Component {
                         res.data.forEach((element, index) => {
                             element.zRecordIndex = index;
                             element.zIsChecked = false;
-                            element.amount = parseFloat(element.amount).toFixed(3);
+                            element.amount = parseFloat(element.amount).toFixed(2);
                             element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                             element.errors = [];
                         });

@@ -20,7 +20,7 @@ class Dashboard extends Component {
     getDashboardData = (formType) => {
         axios.get(`${BACKEND_URL}/api/dashboard/${formType}`).then(res => {
             this.setState({
-                totalAmount: res.data.totalAmount.toFixed(3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                totalAmount: res.data.totalAmount.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
                 numberOfRecords: res.data.numberOfRecords
             })
         })

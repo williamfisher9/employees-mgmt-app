@@ -44,7 +44,7 @@ class MinistriesEmployees extends Component {
             filterApplied: false,
             zMaxNumberOfRecordsForPdf: 150,
             employerDetails: {
-                formType: "wps",
+                formType: "detailed",
                 employerName: "",
                 employerCr: "",
                 payerCr: "",
@@ -66,7 +66,7 @@ class MinistriesEmployees extends Component {
     }
 
     componentDidMount() {
-        let formType = "ministries";
+        let formType = "deductions";
         axios.get(`${BACKEND_URL}/api/employers/${formType}`).then(res => {
             if (res.status === 200 && res.data !== "") {
                 this.setState({
@@ -95,7 +95,7 @@ class MinistriesEmployees extends Component {
     }
 
     reloadCompenent = (showMessage, showMessageContentObject) => {
-        let formType = "ministries";
+        let formType = "deductions";
         axios.get(`${BACKEND_URL}/api/employees/${formType}`)
             .then(res => {
                 if (res.status === 200 && res.data.length !== 0) {
@@ -103,8 +103,8 @@ class MinistriesEmployees extends Component {
                         element.zRecordIndex = index;
                         element.zIsChecked = false;
                         element.netAmount = element.amount - element.deductions;
-                        element.amount = parseFloat(element.amount).toFixed(3);
-                        element.deductions = parseFloat(element.deductions).toFixed(3);
+                        element.amount = parseFloat(element.amount).toFixed(2);
+                        element.deductions = parseFloat(element.deductions).toFixed(2);
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
                     });
@@ -145,7 +145,7 @@ class MinistriesEmployees extends Component {
     }
 
     reloadActivePage = (activePageNumber) => {
-        let formType = "ministries";
+        let formType = "deductions";
         axios.get(`${BACKEND_URL}/api/employees/${formType}`)
             .then(res => {
                 if (res.status === 200 && res.data.length !== 0) {
@@ -153,8 +153,8 @@ class MinistriesEmployees extends Component {
                         element.zRecordIndex = index;
                         element.zIsChecked = false;
                         element.netSalary = element.basicSalary - element.deductions;
-                        element.amount = parseFloat(element.amount).toFixed(3);
-                        element.deductions = parseFloat(element.deductions).toFixed(3);
+                        element.amount = parseFloat(element.amount).toFixed(2);
+                        element.deductions = parseFloat(element.deductions).toFixed(2);
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
                     });
@@ -183,7 +183,7 @@ class MinistriesEmployees extends Component {
     }
 
     reloadActivePageAfterDeletingSelectedRecords = (numberOfDeletedRecords, pageNumber, oldDataLength) => {
-        let formType = "ministries";
+        let formType = "deductions";
         axios.get(`${BACKEND_URL}/api/employees/${formType}`)
             .then(res => {
                 if (res.status === 200 && res.data.length !== 0) {
@@ -191,8 +191,8 @@ class MinistriesEmployees extends Component {
                         element.zRecordIndex = index;
                         element.zIsChecked = false;
                         element.netSalary = element.basicSalary - element.deductions;
-                        element.amount = parseFloat(element.amount).toFixed(3);
-                        element.deductions = parseFloat(element.deductions).toFixed(3);
+                        element.amount = parseFloat(element.amount).toFixed(2);
+                        element.deductions = parseFloat(element.deductions).toFixed(2);
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
                     });
@@ -335,7 +335,7 @@ class MinistriesEmployees extends Component {
     addExtraRecords = (count = 50) => {
         let inCount = count;
         this.setState({ isLoading: true });
-        let formType = "ministries";
+        let formType = "deductions";
         axios.post(`${BACKEND_URL}/api/employees/${formType}/addRecords/${inCount}`)
             .then(res => {
                 if (res.status === 200) {
@@ -376,7 +376,7 @@ class MinistriesEmployees extends Component {
 
         if (toBeDeletedList.length !== 0) {
             let resultsList = toBeDeletedList.map(item => { return item.id })
-            let formType = "ministries";
+            let formType = "deductions";
             axios.delete(`${BACKEND_URL}/api/employees/selected/${formType}/${resultsList}`)
                 .then(res => {
                     if (res.status === 200) {
@@ -392,7 +392,7 @@ class MinistriesEmployees extends Component {
     deleteIncompleteRecords = () => {
 
         this.setState({ isLoading: true });
-        let formType = "ministries";
+        let formType = "deductions";
         axios.delete(`${BACKEND_URL}/api/employees/${formType}/incomplete`)
             .then(res => {
                 if (res.status === 200) {
@@ -415,7 +415,7 @@ class MinistriesEmployees extends Component {
         this.setState({ isLoading: true });
 
         if (this.state.data.length !== 0) {
-            let formType = "ministries";
+            let formType = "deductions";
             axios.delete(`${BACKEND_URL}/api/employees/${formType}/all`)
                 .then(res => {
                     if (res.status === 200) {
@@ -531,19 +531,19 @@ class MinistriesEmployees extends Component {
             dataRows[recordIndexInDataRows].numberOfWorkingDays = 0;
         }
 
-        dataRows[recordIndexInDataRows].amount = parseFloat(dataRows[recordIndexInDataRows].amount).toFixed(3);
-        dataRows[recordIndexInDataRows].deductions = parseFloat(dataRows[recordIndexInDataRows].deductions).toFixed(3);
+        dataRows[recordIndexInDataRows].amount = parseFloat(dataRows[recordIndexInDataRows].amount).toFixed(2);
+        dataRows[recordIndexInDataRows].deductions = parseFloat(dataRows[recordIndexInDataRows].deductions).toFixed(2);
 
         let errors = this.validateItem(dataRows[recordIndexInDataRows], this.state.employerDetails);
 
-        axios.put(`${BACKEND_URL}/api/employees/ministries`, dataRows[recordIndexInDataRows])
+        axios.put(`${BACKEND_URL}/api/employees/deductions`, dataRows[recordIndexInDataRows])
             .then(res => {
                 if (res.status === 200) {
                     dataRows[recordIndexInDataRows].zRecordStatus = errors.length > 0 ? "INCOMPLETE" : "COMPLETE";
                     dataRows[recordIndexInDataRows].errors = errors;
                     dataRows[recordIndexInDataRows].id = res.data.id;
-                    dataRows[recordIndexInDataRows].amount = parseFloat(res.data.amount).toFixed(3);
-                    dataRows[recordIndexInDataRows].deductions = parseFloat(res.data.deductions).toFixed(3);
+                    dataRows[recordIndexInDataRows].amount = parseFloat(res.data.amount).toFixed(2);
+                    dataRows[recordIndexInDataRows].deductions = parseFloat(res.data.deductions).toFixed(2);
 
                     let recordIndexInData = -1;
                     for (let i in this.state.data) {
@@ -613,7 +613,7 @@ class MinistriesEmployees extends Component {
 
     pdfGenerationHandler = () => {
         this.setState({ isLoading: true, showPdfTermsAndConditions: false });
-        let formType = "ministries";
+        let formType = "deductions";
         axios.get(`${BACKEND_URL}/api/pdf/${formType}`)
             .then(res => {
                 if (res.status === 200) {
@@ -626,7 +626,7 @@ class MinistriesEmployees extends Component {
 
     excelGenerationHandler = () => {
         this.setState({ isLoading: true, showExcelTermsAndConditions: false });
-        let formType = "ministries";
+        let formType = "deductions";
         axios.get(`${BACKEND_URL}/api/excel/${formType}`)
             .then(res => {
                 if (res.status === 200) {
@@ -647,7 +647,7 @@ class MinistriesEmployees extends Component {
         let itemId = event.target.id.slice(event.target.id.indexOf("-") + 1, event.target.id.length);
         let verticalSplitArray = event.clipboardData.getData('Text').split("\n");
         let payloadObj = {
-            formType: "ministries",
+            formType: "deductions",
             itemId: itemId,
             fieldName: event.target.name,
             payload: verticalSplitArray
@@ -740,7 +740,7 @@ class MinistriesEmployees extends Component {
 
         const recordsCount = 1000;
 
-        axios.post(`${BACKEND_URL}/api/employees/ministries/bulk/${recordsCount}`).then((res) => {
+        axios.post(`${BACKEND_URL}/api/employees/deductions/bulk/${recordsCount}`).then((res) => {
             if (res.status === 200) {
                 this.reloadCompenent(false, {});
             }
@@ -754,7 +754,7 @@ class MinistriesEmployees extends Component {
     filterData = () => {
 
         if (this.state.filterFieldValue !== "" && this.state.filterFieldValue !== null) {
-            let formType = "ministries";
+            let formType = "deductions";
             axios.get(`${BACKEND_URL}/api/employees/${formType}`)
                 .then(res => {
                     if (res.status === 200 && res.data.length !== 0) {
@@ -762,8 +762,8 @@ class MinistriesEmployees extends Component {
                             element.zRecordIndex = index;
                             element.zIsChecked = false;
                             element.netAmount = element.amount - element.deductions;
-                            element.amount = parseFloat(element.amount).toFixed(3);
-                            element.deductions = parseFloat(element.deductions).toFixed(3);
+                            element.amount = parseFloat(element.amount).toFixed(2);
+                            element.deductions = parseFloat(element.deductions).toFixed(2);
                             element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                             element.errors = [];
                         });

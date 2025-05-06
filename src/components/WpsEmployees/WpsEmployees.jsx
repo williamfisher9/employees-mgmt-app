@@ -43,7 +43,7 @@ class WpsEmployees extends Component {
             filterApplied: false,
             zMaxNumberOfRecordsForPdf: 150,
             employerDetails: {
-                formType: "wps",
+                formType: "detailed",
                 employerName: "",
                 employerCr: "",
                 payerCr: "",
@@ -65,7 +65,7 @@ class WpsEmployees extends Component {
     }
 
     componentDidMount() {
-        let formType = "wps";
+        let formType = "detailed";
         axios.get(`${BACKEND_URL}/api/employers/${formType}`).then(res => {
             if (res.status === 200 && res.data !== "") {
                 this.setState({
@@ -94,7 +94,7 @@ class WpsEmployees extends Component {
     }
 
     reloadCompenent = (showMessage, showMessageContentObject) => {
-        let formType = "wps";
+        let formType = "detailed";
         axios.get(`${BACKEND_URL}/api/employees/${formType}`)
             .then(res => {
                 if (res.status === 200 && res.data.length !== 0) {
@@ -103,10 +103,10 @@ class WpsEmployees extends Component {
                         element.zIsChecked = false;
                         element.netSalary = element.basicSalary + element.extraIncome - element.deductions - element.socialSecurityDeductions;
 
-                        element.basicSalary = parseFloat(element.basicSalary).toFixed(3);
-                        element.extraIncome = parseFloat(element.extraIncome).toFixed(3);
-                        element.deductions = parseFloat(element.deductions).toFixed(3);
-                        element.socialSecurityDeductions = parseFloat(element.socialSecurityDeductions).toFixed(3);
+                        element.basicSalary = parseFloat(element.basicSalary).toFixed(2);
+                        element.extraIncome = parseFloat(element.extraIncome).toFixed(2);
+                        element.deductions = parseFloat(element.deductions).toFixed(2);
+                        element.socialSecurityDeductions = parseFloat(element.socialSecurityDeductions).toFixed(2);
 
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
@@ -147,7 +147,7 @@ class WpsEmployees extends Component {
     }
 
     reloadActivePage = (activePageNumber) => {
-        let formType = "wps";
+        let formType = "detailed";
         axios.get(`${BACKEND_URL}/api/employees/${formType}`)
             .then(res => {
                 if (res.status === 200 && res.data.length !== 0) {
@@ -156,10 +156,10 @@ class WpsEmployees extends Component {
                         element.zIsChecked = false;
                         element.netSalary = element.basicSalary + element.extraIncome - element.deductions - element.socialSecurityDeductions;
 
-                        element.basicSalary = parseFloat(element.basicSalary).toFixed(3);
-                        element.extraIncome = parseFloat(element.extraIncome).toFixed(3);
-                        element.deductions = parseFloat(element.deductions).toFixed(3);
-                        element.socialSecurityDeductions = parseFloat(element.socialSecurityDeductions).toFixed(3);
+                        element.basicSalary = parseFloat(element.basicSalary).toFixed(2);
+                        element.extraIncome = parseFloat(element.extraIncome).toFixed(2);
+                        element.deductions = parseFloat(element.deductions).toFixed(2);
+                        element.socialSecurityDeductions = parseFloat(element.socialSecurityDeductions).toFixed(2);
 
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
@@ -189,7 +189,7 @@ class WpsEmployees extends Component {
     }
 
     reloadActivePageAfterDeletingSelectedRecords = (numberOfDeletedRecords, pageNumber, oldDataLength) => {
-        let formType = "wps";
+        let formType = "detailed";
         axios.get(`${BACKEND_URL}/api/employees/${formType}`)
             .then(res => {
                 if (res.status === 200 && res.data.length !== 0) {
@@ -198,10 +198,10 @@ class WpsEmployees extends Component {
                         element.zIsChecked = false;
                         element.netSalary = element.basicSalary + element.extraIncome - element.deductions - element.socialSecurityDeductions;
 
-                        element.basicSalary = parseFloat(element.basicSalary).toFixed(3);
-                        element.extraIncome = parseFloat(element.extraIncome).toFixed(3);
-                        element.deductions = parseFloat(element.deductions).toFixed(3);
-                        element.socialSecurityDeductions = parseFloat(element.socialSecurityDeductions).toFixed(3);
+                        element.basicSalary = parseFloat(element.basicSalary).toFixed(2);
+                        element.extraIncome = parseFloat(element.extraIncome).toFixed(2);
+                        element.deductions = parseFloat(element.deductions).toFixed(2);
+                        element.socialSecurityDeductions = parseFloat(element.socialSecurityDeductions).toFixed(2);
 
                         element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                         element.errors = [];
@@ -389,7 +389,7 @@ class WpsEmployees extends Component {
     addExtraRecords = (count = 50) => {
         let inCount = count;
         this.setState({ isLoading: true });
-        let formType = "wps";
+        let formType = "detailed";
         axios.post(`${BACKEND_URL}/api/employees/${formType}/addRecords/${inCount}`)
             .then(res => {
                 if (res.status === 200) {
@@ -430,7 +430,7 @@ class WpsEmployees extends Component {
 
         if (toBeDeletedList.length !== 0) {
             let resultsList = toBeDeletedList.map(item => { return item.id })
-            let formType = "wps";
+            let formType = "detailed";
             axios.delete(`${BACKEND_URL}/api/employees/selected/${formType}/${resultsList}`)
                 .then(res => {
                     if (res.status === 200) {
@@ -445,7 +445,7 @@ class WpsEmployees extends Component {
 
     deleteIncompleteRecords = () => {
         this.setState({ isLoading: true });
-        let formType = "wps";
+        let formType = "detailed";
         axios.delete(`${BACKEND_URL}/api/employees/${formType}/incomplete`)
             .then(res => {
                 if (res.status === 200) {
@@ -468,7 +468,7 @@ class WpsEmployees extends Component {
         this.setState({ isLoading: true });
 
         if (this.state.data.length !== 0) {
-            let formType = "wps";
+            let formType = "detailed";
             axios.delete(`${BACKEND_URL}/api/employees/${formType}/all`)
                 .then(res => {
                     if (res.status === 200) {
@@ -597,24 +597,24 @@ class WpsEmployees extends Component {
             dataRows[recordIndexInDataRows].numberOfWorkingDays = 0;
         }
 
-        dataRows[recordIndexInDataRows].basicSalary = parseFloat(dataRows[recordIndexInDataRows].basicSalary).toFixed(3);
-        dataRows[recordIndexInDataRows].extraIncome = parseFloat(dataRows[recordIndexInDataRows].extraIncome).toFixed(3);
-        dataRows[recordIndexInDataRows].deductions = parseFloat(dataRows[recordIndexInDataRows].deductions).toFixed(3);
-        dataRows[recordIndexInDataRows].socialSecurityDeductions = parseFloat(dataRows[recordIndexInDataRows].socialSecurityDeductions).toFixed(3);
+        dataRows[recordIndexInDataRows].basicSalary = parseFloat(dataRows[recordIndexInDataRows].basicSalary).toFixed(2);
+        dataRows[recordIndexInDataRows].extraIncome = parseFloat(dataRows[recordIndexInDataRows].extraIncome).toFixed(2);
+        dataRows[recordIndexInDataRows].deductions = parseFloat(dataRows[recordIndexInDataRows].deductions).toFixed(2);
+        dataRows[recordIndexInDataRows].socialSecurityDeductions = parseFloat(dataRows[recordIndexInDataRows].socialSecurityDeductions).toFixed(2);
 
         let errors = this.validateItem(dataRows[recordIndexInDataRows], this.state.employerDetails);
 
-        axios.put(`${BACKEND_URL}/api/employees/wps`, dataRows[recordIndexInDataRows])
+        axios.put(`${BACKEND_URL}/api/employees/detailed`, dataRows[recordIndexInDataRows])
             .then(res => {
                 if (res.status === 200) {
                     dataRows[recordIndexInDataRows].zRecordStatus = errors.length > 0 ? "INCOMPLETE" : "COMPLETE";
                     dataRows[recordIndexInDataRows].errors = errors;
                     dataRows[recordIndexInDataRows].id = res.data.id;
 
-                    dataRows[recordIndexInDataRows].basicSalary = parseFloat(res.data.basicSalary).toFixed(3);
-                    dataRows[recordIndexInDataRows].extraIncome = parseFloat(res.data.extraIncome).toFixed(3);
-                    dataRows[recordIndexInDataRows].deductions = parseFloat(res.data.deductions).toFixed(3);
-                    dataRows[recordIndexInDataRows].socialSecurityDeductions = parseFloat(res.data.socialSecurityDeductions).toFixed(3);
+                    dataRows[recordIndexInDataRows].basicSalary = parseFloat(res.data.basicSalary).toFixed(2);
+                    dataRows[recordIndexInDataRows].extraIncome = parseFloat(res.data.extraIncome).toFixed(2);
+                    dataRows[recordIndexInDataRows].deductions = parseFloat(res.data.deductions).toFixed(2);
+                    dataRows[recordIndexInDataRows].socialSecurityDeductions = parseFloat(res.data.socialSecurityDeductions).toFixed(2);
 
                     let recordIndexInData = -1;
                     //let duplicateAccount = 0;
@@ -704,7 +704,7 @@ class WpsEmployees extends Component {
 
     pdfGenerationHandler = () => {
         this.setState({ isLoading: true, showPdfTermsAndConditions: false });
-        let formType = "wps";
+        let formType = "detailed";
         axios.get(`${BACKEND_URL}/api/pdf/${formType}`)
             .then(res => {
                 if (res.status === 200) {
@@ -722,7 +722,7 @@ class WpsEmployees extends Component {
 
     excelGenerationHandler = () => {
         this.setState({ isLoading: true, showExcelTermsAndConditions: false });
-        let formType = "wps";
+        let formType = "detailed";
         axios.get(`${BACKEND_URL}/api/excel/${formType}`)
             .then(res => {
                 if (res.status === 200) {
@@ -743,7 +743,7 @@ class WpsEmployees extends Component {
         let itemId = event.target.id.slice(event.target.id.indexOf("-") + 1, event.target.id.length);
         let verticalSplitArray = event.clipboardData.getData('Text').split("\n");
         let payloadObj = {
-            formType: "wps",
+            formType: "detailed",
             itemId: itemId,
             fieldName: event.target.name,
             payload: verticalSplitArray
@@ -836,7 +836,7 @@ class WpsEmployees extends Component {
 
         const recordsCount = 1000;
 
-        axios.post(`${BACKEND_URL}/api/employees/wps/bulk/${recordsCount}`).then((res) => {
+        axios.post(`${BACKEND_URL}/api/employees/detailed/bulk/${recordsCount}`).then((res) => {
             if (res.status === 200) {
                 this.reloadCompenent(false, {});
             }
@@ -850,7 +850,7 @@ class WpsEmployees extends Component {
     filterData = () => {
 
         if (this.state.filterFieldValue !== "" && this.state.filterFieldValue !== null) {
-            let formType = "wps";
+            let formType = "detailed";
             axios.get(`${BACKEND_URL}/api/employees/${formType}`)
                 .then(res => {
                     if (res.status === 200 && res.data.length !== 0) {
@@ -859,10 +859,10 @@ class WpsEmployees extends Component {
                             element.zIsChecked = false;
                             element.netSalary = element.basicSalary + element.extraIncome - element.deductions - element.socialSecurityDeductions;
 
-                            element.basicSalary = parseFloat(element.basicSalary).toFixed(3);
-                            element.extraIncome = parseFloat(element.extraIncome).toFixed(3);
-                            element.deductions = parseFloat(element.deductions).toFixed(3);
-                            element.socialSecurityDeductions = parseFloat(element.socialSecurityDeductions).toFixed(3);
+                            element.basicSalary = parseFloat(element.basicSalary).toFixed(2);
+                            element.extraIncome = parseFloat(element.extraIncome).toFixed(2);
+                            element.deductions = parseFloat(element.deductions).toFixed(2);
+                            element.socialSecurityDeductions = parseFloat(element.socialSecurityDeductions).toFixed(2);
 
                             element.zRecordStatus = this.validateItem(element, this.state.employerDetails).length > 0 ? "INCOMPLETE" : "COMPLETE";
                             element.errors = [];

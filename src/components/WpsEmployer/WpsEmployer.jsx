@@ -23,7 +23,7 @@ class WpsEmployer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formType: "wps",
+            formType: "detailed",
             employerName: "",
             employerCr: "",
             payerCr: "",
@@ -172,7 +172,6 @@ class WpsEmployer extends Component {
         this.setState({ errors: errors, showMessageFlag: false });
 
         if (formIsValid) {
-            console.log(this.state)
             axios.put(`${BACKEND_URL}/api/employers`, this.state)
                 .then((response) => {
                     if (response.status === 200) {
@@ -200,13 +199,13 @@ class WpsEmployer extends Component {
     }
 
     reloadComponent = () => {
-        let formType = "wps";
+        let formType = "detailed";
         axios.get(`${BACKEND_URL}/api/employers/${formType}`)
             .then(res => {
-                console.log(res.data)
                 if (res.data === "") {
                     console.log("no employers exists in the DB!");
-                    this.setState({ valueDate: new Date(), paymentMonth: Moment(new Date()).format("MM").toString(), paymentYear: Moment(new Date()).format("YYYY").toString() });
+                    this.setState({ valueDate: new Date(), paymentMonth: Moment(new Date()).format("MM").toString(), 
+                        paymentYear: Moment(new Date()).format("YYYY").toString() });
                 } else {
                     res.data.valueDate = new Date(Moment(res.data.valueDate));
                     this.setState(res.data);

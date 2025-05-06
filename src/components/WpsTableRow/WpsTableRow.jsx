@@ -15,7 +15,7 @@ class WpsTableRow extends Component {
     }
 
     getSum = (a, b, c, d) => {
-        return (a + b - c - d).toFixed(3);
+        return (a + b - c - d).toFixed(2);
     }
 
     numberWithCommas = (x) => {

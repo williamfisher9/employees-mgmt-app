@@ -12,7 +12,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import './styles.css'
+import './MinistriesEmployer.css'
 
 import MessageBuilder from '../MessageBuilder/MessageBuilder';
 import { BACKEND_URL } from '../../constants/constants';
@@ -23,7 +23,7 @@ class MinistriesEmployer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formType: "ministries",
+            formType: "deductions",
             employerName: "",
             emailAddress: "",
             phoneNumber: "",
@@ -160,7 +160,7 @@ class MinistriesEmployer extends Component {
     }
 
     reloadComponent = () => {
-        let formType = "ministries";
+        let formType = "deductions";
         axios.get(`${BACKEND_URL}/api/employers/${formType}`)
             .then(res => {
                 if (res.data.length === 0) {
