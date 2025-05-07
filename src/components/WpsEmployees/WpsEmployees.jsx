@@ -711,7 +711,8 @@ class WpsEmployees extends Component {
             .then(res => {
                 if (res.status === 200) {
                     if (res.data.code === "200") {
-                        this.setState({ showMessageFlag: true, showMessageContent: { type: "success", content: `File created successfuly ${res.data.message}` }, showPdfTermsAndConditions: false, isLoading: false })
+                        this.setState({ showMessageFlag: true, showMessageContent: { type: "success", 
+                            content: `File created successfuly ${res.data.message}`, fileName: `${res.data.message}` }, showPdfTermsAndConditions: false, isLoading: false })
                     } else if (res.data.code === "204") {
                         this.setState({ showMessageFlag: true, showMessageContent: { type: "error", content: `${res.data.message}` }, showPdfTermsAndConditions: false, isLoading: false })
                     }
@@ -729,7 +730,8 @@ class WpsEmployees extends Component {
             .then(res => {
                 if (res.status === 200) {
                     if (res.data.code === "200") {
-                        this.setState({ showMessageFlag: true, showMessageContent: { type: "success", content: `File created successfuly ${res.data.message}` }, showPdfTermsAndConditions: false, isLoading: false })
+                        this.setState({ showMessageFlag: true, showMessageContent: { type: "success", 
+                            content: `File created successfuly ${res.data.message}`, fileName: `${res.data.message}` }, showPdfTermsAndConditions: false, isLoading: false })
                     } else if (res.data.code === "204") {
                         this.setState({ showMessageFlag: true, showMessageContent: { type: "error", content: `${res.data.message}` }, showPdfTermsAndConditions: false, isLoading: false })
                     }
@@ -964,6 +966,7 @@ class WpsEmployees extends Component {
                 {
                     this.state.showMessageFlag  && <MessageBuilder
                                 errorType={this.state.showMessageContent.type}
+                                fileName={this.state.showMessageContent.fileName}
                                 messageContent={this.state.showMessageContent.content}
                                 hideMessageBuilderModal={this.hideMessageBuilderModal}
                                 showModal={this.state.showMessageFlag} />

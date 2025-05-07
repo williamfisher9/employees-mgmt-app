@@ -6,14 +6,29 @@ import Container from 'react-bootstrap/Container';
 
 import { BiCheckCircle, BiInfoCircle } from 'react-icons/bi'
 import { BsExclamationCircle } from 'react-icons/bs'
+import axios from 'axios';
+import { BACKEND_URL } from '../../constants/constants';
+
+import fileDownload from 'js-file-download';
 
 class MessageBuilder extends Component {
+
+    downloadFile = (name) => {
+        axios({
+            url: `${BACKEND_URL}/public/download/${name}`, // Adjust URL if needed
+            method: 'GET',
+            responseType: 'blob',
+          }).then((response) => {
+            fileDownload(response.data, name);
+          });
+    }
 
     render() {
 
         const messageContent = this.props.messageContent;
 
         const errorType = this.props.errorType;
+        const fileName = this.props.fileName;
         let iconToDisplay = "";
 
         if (errorType === "error") {
@@ -38,6 +53,11 @@ class MessageBuilder extends Component {
                             </div>
                             <div className="mt-4">
                                 {messageContent}
+                                {
+                                    errorType === "success" && <div>
+                                        <Button variant='primary' className='mt-4 px-3 py-2' onClick={() => this.downloadFile(fileName)}>Download File</Button>
+                                    </div>
+                                }
                             </div>
                         </div>
 
