@@ -54,7 +54,7 @@ class MessageBuilder extends Component {
                             <div className="mt-4">
                                 {messageContent}
                                 {
-                                    errorType === "success" && <div>
+                                    fileName != null && fileName != "" && <div>
                                         <Button variant='primary' className='mt-4 px-3 py-2' onClick={() => this.downloadFile(fileName)}>Download File</Button>
                                     </div>
                                 }

@@ -878,26 +878,21 @@ class SimplifiedEmployees extends Component {
                     this.state.showPdfTermsAndConditions ?
                         (
                             <Modal size="xl" show={this.state.showPdfTermsAndConditions} onHide={() => this.setState({ showPdfTermsAndConditions: false })} animation={false}>
-                                <Modal.Body className="text-center m-3 p-5" style={{ fontSize: "20px" }}>
-                                    <h5 className="text-justify text-dark">Terms and Conditions:</h5>
+                                <Modal.Body className="text-justify m-3 p-5" style={{ fontSize: "20px" }}>
+                                    <h5 className="text-center text-dark">Terms and Conditions</h5>
                                     <hr />
                                     <ol>
                                         <li className="text-justify text-dark my-3">
-                                            I/We acknowledge and understand that we are solely responsible for the accuracy of any information contained in this salary instruction file and that Meethaq shall be under no
-                                            obligation to check or ensure that the name of any account holder/beneficiary (as given in my/our instructions) is identical or similar to the name(s) of the account holder(s)
-                                            according to its records or knowledge and confirm that a transfer or payment to (or from as the case may be) an account having the same number as that given in my/our
-                                            instructions shall constitute good and COMPLETE compliance by the Bank with my/our instructions.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum quo iste eum architecto hic, sit error eos expedita laboriosam autem iusto vero amet nulla necessitatibus cumque illum explicabo similique iure?
                                     </li>
                                         <li className="text-justify text-dark my-3">
-                                            I/We acknowledge and understand that Meethaq shall be under no obligation to process a transfer or payment to (or from as the case may be) accounts with incomplete or
-                                            incorrect details
+                                           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente temporibus esse corrupti soluta porro odio. Laboriosam dolores dolore ipsam deleniti illo exercitationem accusantium nemo adipisci itaque soluta. Totam, nisi corporis.
                                     </li>
                                         <li className="text-justify text-dark my-3">
-                                            I/We request and authorize the Bank to debit my/our account(s) mentioned in the file with any charges/fees in respect of Salary Processing Services in accordance with the
-                                            rates published by them from time to time, commencing this date of application and continuing until further notice.
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur omnis pariatur assumenda, placeat perspiciatis similique. Architecto, quo molestias veritatis aperiam iusto placeat sed! Alias consectetur amet voluptatum possimus, enim dolore.
                                     </li>
                                         <li className="text-justify text-dark my-3">
-                                            I/We understand that any Salary Processing instruction given by me/us in relation to any account(s) is subject further to the terms and conditions governing such account(s).
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi quibusdam aspernatur nihil, voluptas nostrum pariatur voluptatem odit veritatis vel cum, blanditiis corporis alias eveniet maxime ex cupiditate quae, qui eos.
                                     </li>
                                     </ol>
                                 </Modal.Body>
@@ -920,26 +915,21 @@ class SimplifiedEmployees extends Component {
                     this.state.showExcelTermsAndConditions ?
                         (
                             <Modal size="xl" show={this.state.showExcelTermsAndConditions} onHide={() => this.setState({ showExcelTermsAndConditions: false })} animation={false}>
-                                <Modal.Body className="text-center m-3 p-5" style={{ fontSize: "20px" }}>
-                                    <h5 className="text-justify text-dark">Terms and Conditions:</h5>
+                                <Modal.Body className="text-justify m-3 p-5" style={{ fontSize: "20px" }}>
+                                    <h5 className="text-center text-dark">Terms and Conditions</h5>
                                     <hr />
                                     <ol>
                                         <li className="text-justify text-dark my-3">
-                                            I/We acknowledge and understand that we are solely responsible for the accuracy of any information contained in this salary instruction file and that Meethaq shall be under no
-                                            obligation to check or ensure that the name of any account holder/beneficiary (as given in my/our instructions) is identical or similar to the name(s) of the account holder(s)
-                                            according to its records or knowledge and confirm that a transfer or payment to (or from as the case may be) an account having the same number as that given in my/our
-                                            instructions shall constitute good and COMPLETE compliance by the Bank with my/our instructions.
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum quo iste eum architecto hic, sit error eos expedita laboriosam autem iusto vero amet nulla necessitatibus cumque illum explicabo similique iure?
                                     </li>
                                         <li className="text-justify text-dark my-3">
-                                            I/We acknowledge and understand that Meethaq shall be under no obligation to process a transfer or payment to (or from as the case may be) accounts with incomplete or
-                                            incorrect details
+                                           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente temporibus esse corrupti soluta porro odio. Laboriosam dolores dolore ipsam deleniti illo exercitationem accusantium nemo adipisci itaque soluta. Totam, nisi corporis.
                                     </li>
                                         <li className="text-justify text-dark my-3">
-                                            I/We request and authorize the Bank to debit my/our account(s) mentioned in the file with any charges/fees in respect of Salary Processing Services in accordance with the
-                                            rates published by them from time to time, commencing this date of application and continuing until further notice.
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur omnis pariatur assumenda, placeat perspiciatis similique. Architecto, quo molestias veritatis aperiam iusto placeat sed! Alias consectetur amet voluptatum possimus, enim dolore.
                                     </li>
                                         <li className="text-justify text-dark my-3">
-                                            I/We understand that any Salary Processing instruction given by me/us in relation to any account(s) is subject further to the terms and conditions governing such account(s).
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi quibusdam aspernatur nihil, voluptas nostrum pariatur voluptatem odit veritatis vel cum, blanditiis corporis alias eveniet maxime ex cupiditate quae, qui eos.
                                     </li>
                                     </ol>
                                 </Modal.Body>
