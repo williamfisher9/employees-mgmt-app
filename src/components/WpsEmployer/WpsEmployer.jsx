@@ -5,6 +5,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Moment from 'moment';
 
+import Cookies from 'js-cookie';
+
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -172,7 +174,7 @@ class WpsEmployer extends Component {
         this.setState({ errors: errors, showMessageFlag: false });
 
         if (formIsValid) {
-            axios.put(`${BACKEND_URL}/api/employers`, this.state)
+            axios.put(`${BACKEND_URL}/api/employers`, this.state, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
                 .then((response) => {
                     if (response.status === 200) {
                         this.setState({
@@ -200,7 +202,7 @@ class WpsEmployer extends Component {
 
     reloadComponent = () => {
         let formType = "detailed";
-        axios.get(`${BACKEND_URL}/api/employers/${formType}`)
+        axios.get(`${BACKEND_URL}/api/employers/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.data === "") {
                     console.log("no employers exists in the DB!");

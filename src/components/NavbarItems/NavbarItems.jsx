@@ -4,13 +4,16 @@ import { GiSmartphone } from "react-icons/gi";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { MdDashboard } from "react-icons/md";
 import { RiLightbulbFlashLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useWindowSize from "../../hooks/useWindowSize";
+import Cookies from "js-cookie";
+import { PiSignOut } from "react-icons/pi";
 
 const NavbarItems = ({urlLink, closeMiniMenu}) => {
     const windowSize = useWindowSize()
+    const navigate = useNavigate()
 
-    if(urlLink.includes('detailed'))
+    if(urlLink.startsWith('/salaries/detailed'))
         return <div className={`d-flex justify-content-center align-items-center gap-4 ${windowSize.width < 900 ? 'flex-column pt-5' : null}`}>
             <Link to="/salaries/detailed/dashboard" onClick={closeMiniMenu} className='text-decoration-none'>
                 <div className='text-black text-center'>
@@ -33,18 +36,30 @@ const NavbarItems = ({urlLink, closeMiniMenu}) => {
                     </div>
             </Link>
 
-            <Link to="/salaries/" onClick={closeMiniMenu} className='text-decoration-none'>
+            <Link to="/salaries/home" onClick={closeMiniMenu} className='text-decoration-none'>
                 <div className='text-black text-center'>
                         <div><AiOutlineHome style={{ fontSize: "25px" }} /></div>
                         <div style={{ fontSize: "13px" }}>Home</div>
                     </div>
             </Link>
+
+            <div className='text-decoration-none' style={{cursor: 'pointer'}} onClick={() => {navigate("/salaries/login"); 
+                        Cookies.remove('isAuthenticated'); 
+                                Cookies.remove('userId');
+                                Cookies.remove('token');
+                                Cookies.remove('authorityId');
+                                Cookies.remove('username');}}>
+                        <div className='text-black text-center'>
+                        <div><PiSignOut style={{ fontSize: "25px" }} /></div>
+                        <div style={{ fontSize: "13px" }}>Sign Out</div>
+                    </div>
+                    </div>
     </div>
 
 
 
 
-if(urlLink.includes('simplified'))
+if(urlLink.startsWith('/salaries/simplified'))
     return <div className={`d-flex justify-content-center align-items-center gap-4 ${windowSize.width < 900 ? 'flex-column pt-5' : null}`}>
         <Link to="/salaries/simplified/dashboard" onClick={closeMiniMenu} className='text-decoration-none'>
             <div className='text-black text-center'>
@@ -67,17 +82,29 @@ if(urlLink.includes('simplified'))
                 </div>
         </Link>
 
-        <Link to="/salaries/" onClick={closeMiniMenu} className='text-decoration-none'>
+        <Link to="/salaries/home" onClick={closeMiniMenu} className='text-decoration-none'>
             <div className='text-black text-center'>
                     <div><AiOutlineHome style={{ fontSize: "25px" }} /></div>
                     <div style={{ fontSize: "13px" }}>Home</div>
                 </div>
         </Link>
+
+        <div className='text-decoration-none' style={{cursor: 'pointer'}} onClick={() => {navigate("/salaries/login"); 
+                        Cookies.remove('isAuthenticated'); 
+                                Cookies.remove('userId');
+                                Cookies.remove('token');
+                                Cookies.remove('authorityId');
+                                Cookies.remove('username');}}>
+                        <div className='text-black text-center'>
+                        <div><PiSignOut style={{ fontSize: "25px" }} /></div>
+                        <div style={{ fontSize: "13px" }}>Sign Out</div>
+                    </div>
+                    </div>
 </div>
 
 
 
-if(urlLink.includes('deductions'))
+if(urlLink.startsWith('/salaries/deductions'))
     return <div className={`d-flex justify-content-center align-items-center gap-4 ${windowSize.width < 900 ? 'flex-column pt-5' : null}`}>
         <Link to="/salaries/deductions/dashboard" onClick={closeMiniMenu} className='text-decoration-none'>
             <div className='text-black text-center'>
@@ -100,19 +127,31 @@ if(urlLink.includes('deductions'))
                 </div>
         </Link>
 
-        <Link to="/salaries/" onClick={closeMiniMenu} className='text-decoration-none'>
+        <Link to="/salaries/home" onClick={closeMiniMenu} className='text-decoration-none'>
             <div className='text-black text-center'>
                     <div><AiOutlineHome style={{ fontSize: "25px" }} /></div>
                     <div style={{ fontSize: "13px" }}>Home</div>
                 </div>
         </Link>
+
+        <div className='text-decoration-none' style={{cursor: 'pointer'}} onClick={() => {navigate("/salaries/login"); 
+                        Cookies.remove('isAuthenticated'); 
+                                Cookies.remove('userId');
+                                Cookies.remove('token');
+                                Cookies.remove('authorityId');
+                                Cookies.remove('username');}}>
+                        <div className='text-black text-center'>
+                        <div><PiSignOut style={{ fontSize: "25px" }} /></div>
+                        <div style={{ fontSize: "13px" }}>Sign Out</div>
+                    </div>
+                    </div>
 </div>
 
 
 
 
 
-if(urlLink.includes('support'))
+if(urlLink.startsWith('/salaries/support'))
     return <div className={`d-flex justify-content-center align-items-center gap-4 ${windowSize.width < 900 ? 'flex-column pt-5' : null}`}>
         <Link to="/salaries/support/contact" onClick={closeMiniMenu} className='text-decoration-none'>
             <div className='text-black text-center'>
@@ -128,12 +167,45 @@ if(urlLink.includes('support'))
             </div>
         </Link>
 
-        <Link to="/salaries/" onClick={closeMiniMenu} className='text-decoration-none'>
+        <Link to="/salaries/home" onClick={closeMiniMenu} className='text-decoration-none'>
             <div className='text-black text-center'>
                     <div><AiOutlineHome style={{ fontSize: "25px" }} /></div>
                     <div style={{ fontSize: "13px" }}>Home</div>
                 </div>
         </Link>
+
+        <div className='text-decoration-none' style={{cursor: 'pointer'}} onClick={() => {navigate("/salaries/login"); 
+                        Cookies.remove('isAuthenticated'); 
+                                Cookies.remove('userId');
+                                Cookies.remove('token');
+                                Cookies.remove('authorityId');
+                                Cookies.remove('username');}}>
+                        <div className='text-black text-center'>
+                        <div><PiSignOut style={{ fontSize: "25px" }} /></div>
+                        <div style={{ fontSize: "13px" }}>Sign Out</div>
+                    </div>
+                    </div>
+</div>
+
+
+
+
+
+
+
+if(urlLink.startsWith('/salaries/home'))
+    return <div className={`d-flex justify-content-center align-items-center gap-4 ${windowSize.width < 900 ? 'flex-column pt-5' : null}`}>
+        <div className='text-decoration-none' style={{cursor: 'pointer'}} onClick={() => {navigate("/salaries/login"); 
+                        Cookies.remove('isAuthenticated'); 
+                                Cookies.remove('userId');
+                                Cookies.remove('token');
+                                Cookies.remove('authorityId');
+                                Cookies.remove('username');}}>
+                        <div className='text-black text-center'>
+                        <div><PiSignOut style={{ fontSize: "25px" }} /></div>
+                        <div style={{ fontSize: "13px" }}>Sign Out</div>
+                    </div>
+                    </div>
 </div>
 }
 

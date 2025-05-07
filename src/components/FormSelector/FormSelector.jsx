@@ -12,7 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./FormSelector.css";
 import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../../constants/constants";
-
+import Cookies from "js-cookie";
 import logoImg from '../../assets/logo.png'
 
 const FormSelector = () => {
@@ -21,19 +21,26 @@ const FormSelector = () => {
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/api/forms`)
+      .get(`${BACKEND_URL}/api/forms`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
       .then((res) => {
         if (res.status === 200 && res.data !== "") {
           setData(res.data);
         }
       })
       .catch((err) => {
-        console.log(err);
-      });
+                  if (err.status == 401 || err.status == 403) {
+                      Cookies.remove('isAuthenticated'); 
+                                      Cookies.remove('userId');
+                                      Cookies.remove('token');
+                                      Cookies.remove('authorityId');
+                                      Cookies.remove('username');
+                  window.location.assign("/salaries/login")
+                }
+                });
   }, []);
 
   return <Container className="p-4">
-    <div className='d-flex justify-content-center align-items-center gap-2 flex-column' href="/salaries/">
+    <div className='d-flex justify-content-center align-items-center gap-2 flex-column' href="/salaries/home">
                         <img
                         alt=""
                         src={logoImg}

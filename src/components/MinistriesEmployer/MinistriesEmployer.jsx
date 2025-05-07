@@ -14,6 +14,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import './MinistriesEmployer.css'
 
+import Cookies from 'js-cookie';
+
 import MessageBuilder from '../MessageBuilder/MessageBuilder';
 import { BACKEND_URL } from '../../constants/constants';
 
@@ -133,7 +135,7 @@ class MinistriesEmployer extends Component {
         this.setState({ errors: errors, showMessageFlag: false });
 
         if (formIsValid) {
-            axios.put(`${BACKEND_URL}/api/employers`, this.state)
+            axios.put(`${BACKEND_URL}/api/employers`, this.state, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
                 .then((response) => {
                     if (response.status === 200) {
                         this.setState({
@@ -161,7 +163,7 @@ class MinistriesEmployer extends Component {
 
     reloadComponent = () => {
         let formType = "deductions";
-        axios.get(`${BACKEND_URL}/api/employers/${formType}`)
+        axios.get(`${BACKEND_URL}/api/employers/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.data.length === 0) {
                     console.log("no employers exists in the DB!");

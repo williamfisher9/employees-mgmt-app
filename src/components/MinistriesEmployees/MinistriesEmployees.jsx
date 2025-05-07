@@ -10,6 +10,7 @@ import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal'
 
+import Cookies from 'js-cookie';
 
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -67,7 +68,7 @@ class MinistriesEmployees extends Component {
 
     componentDidMount() {
         let formType = "deductions";
-        axios.get(`${BACKEND_URL}/api/employers/${formType}`).then(res => {
+        axios.get(`${BACKEND_URL}/api/employers/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }}).then(res => {
             if (res.status === 200 && res.data !== "") {
                 this.setState({
                     employerDetails: res.data
@@ -96,7 +97,7 @@ class MinistriesEmployees extends Component {
 
     reloadCompenent = (showMessage, showMessageContentObject) => {
         let formType = "deductions";
-        axios.get(`${BACKEND_URL}/api/employees/${formType}`)
+        axios.get(`${BACKEND_URL}/api/employees/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.status === 200 && res.data.length !== 0) {
                     res.data.forEach((element, index) => {
@@ -146,7 +147,7 @@ class MinistriesEmployees extends Component {
 
     reloadActivePage = (activePageNumber) => {
         let formType = "deductions";
-        axios.get(`${BACKEND_URL}/api/employees/${formType}`)
+        axios.get(`${BACKEND_URL}/api/employees/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.status === 200 && res.data.length !== 0) {
                     res.data.forEach((element, index) => {
@@ -184,7 +185,7 @@ class MinistriesEmployees extends Component {
 
     reloadActivePageAfterDeletingSelectedRecords = (numberOfDeletedRecords, pageNumber, oldDataLength) => {
         let formType = "deductions";
-        axios.get(`${BACKEND_URL}/api/employees/${formType}`)
+        axios.get(`${BACKEND_URL}/api/employees/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.status === 200 && res.data.length !== 0) {
                     res.data.forEach((element, index) => {
@@ -336,7 +337,7 @@ class MinistriesEmployees extends Component {
         let inCount = count;
         this.setState({ isLoading: true });
         let formType = "deductions";
-        axios.post(`${BACKEND_URL}/api/employees/${formType}/addRecords/${inCount}`)
+        axios.post(`${BACKEND_URL}/api/employees/${formType}/addRecords/${inCount}`,null, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.status === 200) {
                     this.reloadActivePage(this.state.activePageNumber);
@@ -377,7 +378,7 @@ class MinistriesEmployees extends Component {
         if (toBeDeletedList.length !== 0) {
             let resultsList = toBeDeletedList.map(item => { return item.id })
             let formType = "deductions";
-            axios.delete(`${BACKEND_URL}/api/employees/selected/${formType}/${resultsList}`)
+            axios.delete(`${BACKEND_URL}/api/employees/selected/${formType}/${resultsList}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
                 .then(res => {
                     if (res.status === 200) {
                         this.setState({ isLoading: false, filterFieldValue: "", filterApplied: false });
@@ -393,7 +394,7 @@ class MinistriesEmployees extends Component {
 
         this.setState({ isLoading: true });
         let formType = "deductions";
-        axios.delete(`${BACKEND_URL}/api/employees/${formType}/incomplete`)
+        axios.delete(`${BACKEND_URL}/api/employees/${formType}/incomplete`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.status === 200) {
                     if (res.data.code === "200") {
@@ -416,7 +417,7 @@ class MinistriesEmployees extends Component {
 
         if (this.state.data.length !== 0) {
             let formType = "deductions";
-            axios.delete(`${BACKEND_URL}/api/employees/${formType}/all`)
+            axios.delete(`${BACKEND_URL}/api/employees/${formType}/all`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
                 .then(res => {
                     if (res.status === 200) {
                         this.reloadCompenent(true, { type: "success", content: "All records deleted successfully." })
@@ -536,7 +537,7 @@ class MinistriesEmployees extends Component {
 
         let errors = this.validateItem(dataRows[recordIndexInDataRows], this.state.employerDetails);
 
-        axios.put(`${BACKEND_URL}/api/employees/deductions`, dataRows[recordIndexInDataRows])
+        axios.put(`${BACKEND_URL}/api/employees/deductions`, dataRows[recordIndexInDataRows], { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.status === 200) {
                     dataRows[recordIndexInDataRows].zRecordStatus = errors.length > 0 ? "INCOMPLETE" : "COMPLETE";
@@ -614,7 +615,7 @@ class MinistriesEmployees extends Component {
     pdfGenerationHandler = () => {
         this.setState({ isLoading: true, showPdfTermsAndConditions: false });
         let formType = "deductions";
-        axios.get(`${BACKEND_URL}/api/pdf/${formType}`)
+        axios.get(`${BACKEND_URL}/api/pdf/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.status === 200) {
                     this.setState({ showMessageFlag: true, showMessageContent: { type: "success", content: `File created successfuly ${res.data}` }, showPdfTermsAndConditions: false, isLoading: false })
@@ -627,7 +628,7 @@ class MinistriesEmployees extends Component {
     excelGenerationHandler = () => {
         this.setState({ isLoading: true, showExcelTermsAndConditions: false });
         let formType = "deductions";
-        axios.get(`${BACKEND_URL}/api/excel/${formType}`)
+        axios.get(`${BACKEND_URL}/api/excel/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.status === 200) {
                     if (res.data.code === "200") {
@@ -656,7 +657,7 @@ class MinistriesEmployees extends Component {
 
         //timeout is used to workaround the onPaste/onBlur competition
         setTimeout(() => {
-            axios.post(`${BACKEND_URL}/api/employees/pasteHandler`, payloadObj).then(res => {
+            axios.post(`${BACKEND_URL}/api/employees/pasteHandler`, payloadObj, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }}).then(res => {
                 if (res.status === 200) {
                     this.reloadCompenent(false, {});
                 }
@@ -740,7 +741,7 @@ class MinistriesEmployees extends Component {
 
         const recordsCount = 1000;
 
-        axios.post(`${BACKEND_URL}/api/employees/deductions/bulk/${recordsCount}`).then((res) => {
+        axios.post(`${BACKEND_URL}/api/employees/deductions/bulk/${recordsCount}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }}).then((res) => {
             if (res.status === 200) {
                 this.reloadCompenent(false, {});
             }
@@ -755,7 +756,7 @@ class MinistriesEmployees extends Component {
 
         if (this.state.filterFieldValue !== "" && this.state.filterFieldValue !== null) {
             let formType = "deductions";
-            axios.get(`${BACKEND_URL}/api/employees/${formType}`)
+            axios.get(`${BACKEND_URL}/api/employees/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
                 .then(res => {
                     if (res.status === 200 && res.data.length !== 0) {
                         res.data.forEach((element, index) => {

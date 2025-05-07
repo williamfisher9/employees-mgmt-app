@@ -6,6 +6,7 @@ import axios from 'axios'
 import { GiMoneyStack } from 'react-icons/gi'
 import { IoPeopleOutline } from 'react-icons/io5'
 import { BACKEND_URL } from '../../constants/constants';
+import Cookies from 'js-cookie';
 
 class Dashboard extends Component {
 
@@ -18,12 +19,23 @@ class Dashboard extends Component {
     }
 
     getDashboardData = (formType) => {
-        axios.get(`${BACKEND_URL}/api/dashboard/${formType}`).then(res => {
+        axios
+        .get(`${BACKEND_URL}/api/dashboard/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }}).then(res => {
             this.setState({
                 totalAmount: res.data.totalAmount.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
                 numberOfRecords: res.data.numberOfRecords
             })
         })
+        .catch((err) => {
+            if (err.status == 401 || err.status == 403) {
+                Cookies.remove('isAuthenticated'); 
+                                Cookies.remove('userId');
+                                Cookies.remove('token');
+                                Cookies.remove('authorityId');
+                                Cookies.remove('username');
+            window.location.assign("/salaries/login")
+          }
+          });
     }
 
     componentDidMount = () => {

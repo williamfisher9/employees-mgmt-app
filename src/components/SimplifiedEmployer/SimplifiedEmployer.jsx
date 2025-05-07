@@ -17,7 +17,7 @@ import './SimplifiedEmployer.css'
 import MessageBuilder from '../MessageBuilder/MessageBuilder';
 import { BACKEND_URL } from '../../constants/constants';
 
-
+import Cookies from 'js-cookie';
 class SimplifiedEmployer extends Component {
 
     constructor(props) {
@@ -133,7 +133,7 @@ class SimplifiedEmployer extends Component {
         this.setState({ errors: errors, showMessageFlag: false });
 
         if (formIsValid) {
-            axios.put(`${BACKEND_URL}/api/employers`, this.state)
+            axios.put(`${BACKEND_URL}/api/employers`, this.state, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
                 .then((response) => {
                     console.log(response.data)
                     if (response.status === 200) {
@@ -162,7 +162,7 @@ class SimplifiedEmployer extends Component {
 
     reloadComponent = () => {
         let formType = "simplified";
-        axios.get(`${BACKEND_URL}/api/employers/${formType}`)
+        axios.get(`${BACKEND_URL}/api/employers/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
             .then(res => {
                 if (res.data.length === 0) {
                     console.log("no employers exists in the DB!");
