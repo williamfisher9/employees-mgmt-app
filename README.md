@@ -33,7 +33,7 @@ The frontend offers a clean and intuitive interface that enables:
 
 1. **Clone the Repository**
 ```bash
-git clone https://github.com/williamfisher9/employees-mgmt-app-backend
+git clone https://github.com/williamfisher9/salaries-mgmt-app-frontend
 cd employees-mgmt-app-backend
 ```
 
@@ -44,7 +44,7 @@ npm install
 
 3. **Start the Development Server**
 ```bash
-npm start
+npm run dev
 ```
 
 

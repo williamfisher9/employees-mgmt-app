@@ -16,12 +16,12 @@ import HowTo from './components/Support/how';
 const App = () => {
   return <Router>
   <Routes>
-    
-    <Route path='/salaries/login' element={<Login />}></Route>
-
     <Route path='/salaries/' element={<MainContainer />}>
       <Route index path='/salaries/' element={<FormSelector />}></Route>
       <Route path='/salaries/home' element={<FormSelector />}></Route>
+      <Route path='/salaries/login' element={<Login />}></Route>
+      
+      
 
     <Route path='/salaries/detailed' element={<Dashboard formType={"detailed"} />}></Route>
 

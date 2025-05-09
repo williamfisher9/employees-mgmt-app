@@ -78,8 +78,10 @@ const Login = () => {
     }
 
     return <div className='outer-container'>
-        <form className='form-container'>
+        <form className='form-container' onSubmit={handleLoginRequest}>
             <img src={logoImg} alt='logo' style={{height: "75px"}} />
+
+            <p className="form-name-font-style store-name">WILLIAM FISHER BOOKSTORE</p>
 
             <div className='inner-form-container'>
             {
@@ -100,9 +102,7 @@ const Login = () => {
                 <p className='form-field-error'>{formFieldsErrors.password}</p>
             </div>
 
-            <Button className='rounded-0' style={{backgroundColor: "teal"}} onClick={handleLoginRequest}>
-                <span>Sign In</span>
-            </Button>
+            <input type='submit' value="Sign In" className='rounded-0 text-white px-4 py-2' style={{backgroundColor: "teal", border: "none", outline: "none"}}/>
 
             
             {

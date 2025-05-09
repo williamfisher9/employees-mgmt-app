@@ -12,19 +12,18 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BACKEND_URL } from '../../constants/constants';
 import Cookies from 'js-cookie';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const MainContainer = () => {
     const windowSize = useWindowSize()
     const [showMiniMenu, setShowMiniMenu] = useState(false)
 
     const location = useLocation()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        console.log(location.pathname)
         axios
           .get(`${BACKEND_URL}/api/forms`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }})
-          .then((res) => {})
           .catch((err) => {
                       if (err.status == 401 || err.status == 403) {
                           Cookies.remove('isAuthenticated'); 
@@ -32,16 +31,16 @@ const MainContainer = () => {
                                           Cookies.remove('token');
                                           Cookies.remove('authorityId');
                                           Cookies.remove('username');
-                      window.location.assign("/salaries/login")
+                      navigate("/salaries/login")
                     }
                     });
       }, []);
 
     return <div>
 
-            <Navbar style={{backgroundColor: "rgba(0, 128, 128, 0.1)"}}>
+            {!location.pathname.startsWith('/salaries/login') && <Navbar style={{backgroundColor: "rgba(0, 128, 128, 0.1)"}}>
                     <Container fluid>
-                        <Navbar.Brand className='d-flex justify-content-center align-items-center gap-2' href="/salaries/home">
+                         <Navbar.Brand className='d-flex justify-content-center align-items-center gap-2' href="/salaries/home">
                             <img
                             alt=""
                             src={logoImg}
@@ -53,6 +52,7 @@ const MainContainer = () => {
                             
                             
                         </Navbar.Brand>
+                        
 
                         <span className='d-flex justify-content-center align-items-center'>
                             {location.pathname.startsWith('/salaries/detailed') && <>
@@ -84,7 +84,7 @@ const MainContainer = () => {
                     
                     </Container>
                 </Navbar>
-
+}
                 {
                     showMiniMenu && windowSize.width < 900 && <div className='mini-menu'>
                         <span className="material-symbols-rounded" 

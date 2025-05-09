@@ -34,7 +34,7 @@ const FormSelector = () => {
                                       Cookies.remove('token');
                                       Cookies.remove('authorityId');
                                       Cookies.remove('username');
-                  window.location.assign("/salaries/login")
+                  navigate("/salaries/login")
                 }
                 });
   }, []);

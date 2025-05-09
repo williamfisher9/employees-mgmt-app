@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useEffect, useState } from 'react';
 import './Dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
@@ -7,18 +7,14 @@ import { GiMoneyStack } from 'react-icons/gi'
 import { IoPeopleOutline } from 'react-icons/io5'
 import { BACKEND_URL } from '../../constants/constants';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
-class Dashboard extends Component {
+const Dashboard = ({formType}) => {
+    const naviagte = useNavigate();
+    const [numberOfRecords, setNumberOfRecords] = useState(0);
+    const [totalAmount, setTotalAmount] = useState(0);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            numberOfRecords: 0,
-            totalAmount: 0
-        }
-    }
-
-    getDashboardData = (formType) => {
+    const getDashboardData = (formType) => {
         axios
         .get(`${BACKEND_URL}/api/dashboard/${formType}`, { headers: { Authorization: `Bearer ${Cookies.get("token")}` }}).then(res => {
             this.setState({
@@ -33,24 +29,22 @@ class Dashboard extends Component {
                                 Cookies.remove('token');
                                 Cookies.remove('authorityId');
                                 Cookies.remove('username');
-            window.location.assign("/salaries/login")
+            naviagte("/salaries/login")
           }
           });
     }
 
-    componentDidMount = () => {
-        this.getDashboardData(this.props.formType);
-    }
+    useEffect(() => {
+        getDashboardData(formType);
+    }, [])
 
-    render() {
-        return (
-            <div className="d-flex justify-content-center align-items-center flex-wrap gap-3">
+    return <div className="d-flex justify-content-center align-items-center flex-wrap gap-3">
 
                 <div className="widget-style">
                     <div className="text-right">
                         <IoPeopleOutline style={{ fontSize: "50px", color: "#000" }} />
                         </div>
-                        <p style={{ color: "#000" }} className="text-left h3">{this.state.numberOfRecords}</p>
+                        <p style={{ color: "#000" }} className="text-left h3">{numberOfRecords}</p>
                         <p className="text-black text-left h5">Employees Records</p>
                 </div>
 
@@ -58,13 +52,11 @@ class Dashboard extends Component {
                     <div className="text-right">
                             <GiMoneyStack style={{ fontSize: "50px", color: "#000" }} />
                         </div>
-                        <p style={{ color: "#000" }} className="text-left h3">USD {this.state.totalAmount}</p>
+                        <p style={{ color: "#000" }} className="text-left h3">USD {totalAmount}</p>
                         <p className="text-black text-left h5">Total Amount</p>
                 </div>
 
             </div>
-        );
-    }
 }
 
 export default Dashboard;
