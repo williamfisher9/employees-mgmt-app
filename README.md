@@ -1,12 +1,50 @@
-# React + Vite
+# 🖥️ Salaries Files Generator – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for the Salaries Files Generator, a web-based payroll automation system designed for small businesses. It allows users to input employee salary details through a user-friendly interface and generate secure, bank-compliant Excel and PDF outputs.
 
-Currently, two official plugins are available:
+## 🌐 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React.js**
+- **HTML5**
+- **CSS3 / Bootstrap**
+- **Axios** (for API communication)
+- **React Router** (for navigation)
+- **JWT Handling** (for secure login sessions)
 
-## Expanding the ESLint configuration
+## 🎯 Project Purpose
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The frontend offers a clean and intuitive interface that enables:
+- User authentication and session handling via JWT
+- Easy entry of employee salary information
+- Generation of downloadable salary files (Excel & PDF)
+- Seamless interaction with the Spring Boot backend
+
+## 🖼️ Features
+
+- Responsive, mobile-friendly UI
+- Login form with validation
+- Secure form submission with JWT tokens
+- Table-based input for bulk employee data
+- File download buttons for Excel and PDF outputs
+- Integration with backend APIs for real-time processing
+
+
+## 📦 Setup Instructions
+
+1. **Clone the Repository**
+```bash
+git clone https://github.com/yourusername/salary-files-generator-frontend.git
+cd salary-files-generator-frontend
+```
+
+2. **Install Dependencies**
+```bash
+npm install
+```
+
+3. **Start the Development Server**
+```bash
+npm start
+```
+
+
