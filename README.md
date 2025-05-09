@@ -48,3 +48,5 @@ npm start
 ```
 
 
+## 🌐 Live Demo
+[Link to Live Demo](https://willtechbooth.dev/salaries/)
