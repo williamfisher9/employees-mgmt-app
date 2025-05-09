@@ -33,8 +33,8 @@ The frontend offers a clean and intuitive interface that enables:
 
 1. **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/salary-files-generator-frontend.git
-cd salary-files-generator-frontend
+git clone https://github.com/williamfisher9/employees-mgmt-app-backend
+cd employees-mgmt-app-backend
 ```
 
 2. **Install Dependencies**
